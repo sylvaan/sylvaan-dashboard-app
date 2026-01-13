@@ -1,5 +1,6 @@
-import { Trophy, Medal, User } from 'lucide-react';
+import { Trophy, Medal, Users } from 'lucide-react';
 import StatsCard from '../../components/ui/StatsCard';
+import StandingsTable from './components/StandingsTable';
 
 const DashboardPage = () => {
   return (
@@ -9,24 +10,24 @@ const DashboardPage = () => {
         <span className="text-sm text-gray-500">Season 2025/26</span>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <StatsCard
           title="League Leader"
           value="45 Pts"
-          subValue="Liverpool"
-          icon={Trophy}
+          subValue="Liverpool FC"
+          icon={<Trophy className="h-6 w-6" />}
         />
         <StatsCard
           title="Top Scorer"
           value="14 Goals"
           subValue="Erling Haaland"
-          icon={Medal}
+          icon={<Medal className="h-6 w-6" />}
         />
         <StatsCard
           title="Most Assists"
           value="8 Assists"
           subValue="Mohamed Salah"
-          icon={User}
+          icon={<Users className="h-6 w-6" />}
         />
       </div>
 
@@ -36,9 +37,7 @@ const DashboardPage = () => {
         </div>
         
         {/* Placeholder for standings table */}
-        <div className="flex items-center justify-center h-64 border-2 border-dashed border-gray-200 rounded-lg bg-gray-50 text-gray-400">
-          League Table Component Placeholder
-        </div>
+        <StandingsTable />
       </div>
     </div>
   );
