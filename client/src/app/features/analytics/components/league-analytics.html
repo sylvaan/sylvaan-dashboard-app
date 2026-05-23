@@ -1,0 +1,38 @@
+<div class="space-y-6">
+  <!-- Title Race Chart -->
+  <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-200 dark:border-slate-750 p-6 transition-all duration-300">
+    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-6">Title Race Progression (Top 3)</h3>
+    <div class="w-full">
+      <apx-chart
+        [series]="chartSeries"
+        [chart]="chartDetails()"
+        [xaxis]="chartXaxis()"
+        [yaxis]="chartYaxis()"
+        [stroke]="chartStroke"
+        [grid]="chartGrid()"
+        [colors]="chartColors"
+        [tooltip]="chartTooltip()"
+        [legend]="chartLegend()"
+      ></apx-chart>
+    </div>
+  </div>
+
+  <!-- Season Stats Summary -->
+  <div>
+    <h4 class="text-sm font-semibold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-4">Season Stats Summary</h4>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-gray-200 dark:border-slate-750 shadow-sm transition-all duration-300">
+        <span class="text-sm text-gray-500 dark:text-slate-400 block mb-1">Total Goals</span>
+        <span class="text-2xl font-bold text-gray-900 dark:text-white">450</span>
+      </div>
+      <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-gray-200 dark:border-slate-750 shadow-sm transition-all duration-300">
+        <span class="text-sm text-gray-500 dark:text-slate-400 block mb-1">Avg Goals/Match</span>
+        <span class="text-2xl font-bold text-gray-900 dark:text-white">2.8</span>
+      </div>
+      <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-gray-200 dark:border-slate-750 shadow-sm transition-all duration-300">
+        <span class="text-sm text-gray-500 dark:text-slate-400 block mb-1">Clean Sheets</span>
+        <span class="text-2xl font-bold text-gray-900 dark:text-white">85</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="space-y-6">
+  <div class="flex items-center justify-between">
+    <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Premier League Analytics</h1>
+    <span class="text-sm text-gray-500 dark:text-slate-400">Season 2025/26</span>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <app-stats-card
+      title="League Leader"
+      value="45 Pts"
+      subValue="Liverpool FC"
+    >
+      <svg lucideTrophy class="h-6 w-6"></svg>
+    </app-stats-card>
+
+    <app-stats-card
+      title="Top Scorer"
+      value="14 Goals"
+      subValue="Erling Haaland"
+    >
+      <svg lucideMedal class="h-6 w-6"></svg>
+    </app-stats-card>
+
+    <app-stats-card
+      title="Most Assists"
+      value="8 Assists"
+      subValue="Mohamed Salah"
+    >
+      <svg lucideUsers class="h-6 w-6"></svg>
+    </app-stats-card>
+  </div>
+
+  <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-200 dark:border-slate-750 p-6 min-h-[400px] transition-all duration-300">
+    <div class="border-b border-gray-100 dark:border-slate-700 pb-4 mb-4">
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-white">League Standings</h2>
+    </div>
+    
+    <app-standings-table></app-standings-table>
+  </div>
+</div>

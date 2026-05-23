@@ -1,0 +1,62 @@
+<div class="space-y-6">
+  <!-- Top Bar: Selector and Rank -->
+  <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-200 dark:border-slate-750 p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-all duration-300">
+    <div>
+      <label htmlFor="team-select" class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">
+        Select Team
+      </label>
+      <select
+        id="team-select"
+        [value]="selectedTeam()"
+        (change)="onTeamChange($event)"
+        class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 dark:border-slate-700 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md border min-w-[200px] dark:bg-slate-900 dark:text-white transition-all"
+      >
+        @for (team of teamsList(); track team) {
+          <option [value]="team">
+            {{ team }}
+          </option>
+        }
+      </select>
+    </div>
+    
+    <div class="bg-indigo-50 dark:bg-indigo-950/30 px-4 py-2 rounded-lg border border-indigo-100 dark:border-indigo-900/40">
+      <span class="text-indigo-900 dark:text-indigo-300 font-bold">Current Rank: #{{ currentData().rank }}</span>
+    </div>
+  </div>
+
+  <!-- Key Stats Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-gray-200 dark:border-slate-750 shadow-sm transition-all duration-300">
+      <span class="text-sm text-gray-500 dark:text-slate-400 block mb-1">Wins</span>
+      <span class="text-2xl font-bold text-gray-900 dark:text-white">{{ currentData().wins }}</span>
+    </div>
+    <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-gray-200 dark:border-slate-750 shadow-sm transition-all duration-300">
+      <span class="text-sm text-gray-500 dark:text-slate-400 block mb-1">Top Scorer</span>
+      <div class="flex flex-col">
+        <span class="text-lg font-bold text-gray-900 dark:text-white">{{ currentData().topScorer }}</span>
+        <span class="text-xs text-indigo-600 dark:text-indigo-400 font-medium">{{ currentData().topScorerGoals }} Goals</span>
+      </div>
+    </div>
+    <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-gray-200 dark:border-slate-750 shadow-sm transition-all duration-300">
+      <span class="text-sm text-gray-500 dark:text-slate-400 block mb-1">Avg Goals</span>
+      <span class="text-2xl font-bold text-gray-900 dark:text-white">{{ currentData().avgGoals }}</span>
+    </div>
+  </div>
+
+  <!-- Chart Section -->
+  <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-200 dark:border-slate-750 p-6 transition-all duration-300">
+    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-6">Goals Scored (Last 5 Matches)</h3>
+    <div class="w-full">
+      <apx-chart
+        [series]="chartSeries()"
+        [chart]="chartDetails()"
+        [xaxis]="chartXaxis()"
+        [yaxis]="chartYaxis()"
+        [plotOptions]="chartPlotOptions"
+        [grid]="chartGrid()"
+        [colors]="chartColors()"
+        [tooltip]="chartTooltip()"
+      ></apx-chart>
+    </div>
+  </div>
+</div>
