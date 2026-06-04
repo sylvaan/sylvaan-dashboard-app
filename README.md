@@ -1,67 +1,100 @@
 # Sylvaan Dashboard App
 
-A React TypeScript dashboard application built with Vite and Tailwind CSS.
+A full-stack sports analytics dashboard featuring a frontend built with **Angular 19** and a backend powered by **Express.js** and **Prisma v7**.
 
-## Features
+---
 
-- **Framework**: React 19 + TypeScript
-- **Build Tool**: Vite
-- **Styling**: Tailwind CSS v3
-- **Routing**: React Router DOM v7
+## 🛠️ Technology Stack
 
-## Getting Started
+### Frontend (`/client`)
+- **Framework**: Angular 19 (Standalone Components, Signals, Router)
+- **Styling**: Tailwind CSS v4
+- **Icons**: Lucide Icons (`@lucide/angular`)
+- **Charts**: ApexCharts (`ng-apexcharts`) with light/dark mode theme switching
+- **Theme**: Dark/Light mode with local storage persistence and system preference detection
+
+### Backend (`/server`)
+- **Runtime**: Node.js & Express with TypeScript
+- **ORM**: Prisma v7 (using ESNext-friendly `prisma.config.ts` configuration)
+- **Database**: PostgreSQL (hosted on Neon.tech)
+
+---
+
+## 📂 Project Structure
+
+```
+sylvaan-dashboard-app/
+├── client/              # Angular 19 Frontend
+│   ├── src/app/
+│   │   ├── core/        # Global Services (Theme, API)
+│   │   ├── layouts/     # Main layout structures (Sidebar, Header)
+│   │   ├── components/  # Reusable UI Elements (StatsCard)
+│   │   └── features/    # Page Modules (Dashboard, Analytics, Settings)
+│   └── package.json
+├── server/              # Express.js Backend
+│   ├── prisma/          # Database Schema & Migrations
+│   ├── src/             # API Routing, Sync Services
+│   ├── prisma.config.ts # Prisma v7 config
+│   └── package.json
+└── package.json         # Root Manager (Convenience scripts)
+```
+
+---
+
+## 🚀 Getting Started
 
 ### Prerequisites
-
 - Node.js v22.12.0 or higher
+- A [Neon.tech](https://neon.tech/) PostgreSQL database instance
+- An API key from [Football-Data.org](https://www.football-data.org/)
 
 ### Installation
 
-1. Clone the repository
-2. Install dependencies:
+1. Clone the repository:
    ```bash
-   npm install
+   git clone https://github.com/sylvaan/sylvaan-dashboard-app.git
+   cd sylvaan-dashboard-app
    ```
 
-### Development
+2. Install dependencies for both frontend and backend:
+   ```bash
+   # Install client packages
+   cd client && npm install
+   
+   # Install server packages
+   cd ../server && npm install
+   ```
 
-Start the development server:
+3. Setup environment variables:
+   - Create a `.env` file in the `/server` directory:
+     ```env
+     PORT=3000
+     DATABASE_URL="postgresql://neondb_owner:YOUR_NEON_POOLED_CONNECTION_STRING"
+     FOOTBALL_API_KEY="your_api_key_from_football_data_org"
+     ```
 
-```bash
-npm run dev
-```
+4. Initialize the database:
+   - Run Prisma push inside the `/server` folder to push the schema tables to your database:
+     ```bash
+     cd server
+     npx prisma db push
+     ```
 
-### Build
+---
 
-Build for production:
+## 💻 Running the App
 
-```bash
-npm run build
-```
+Run these commands directly from the root workspace directory:
 
-Previews the production build locally:
+- **Run Frontend**: `npm run client` (serves the app on `http://localhost:4200`)
+- **Run Backend**: `npm run server` (starts the Express dev API on `http://localhost:3000`)
+- **Build Frontend**: `npm run build:client`
+- **Build Backend**: `npm run build:server`
 
-```bash
-npm run preview
-```
+---
 
-### Linting
+## 🎯 Key Features
 
-Run ESLint to check for code quality issues:
-
-```bash
-npm run lint
-```
-
-## Project Structure
-
-- `src/` - Source code
-- `public/` - Static assets
-- `dist/` - Production build outputs
-
-## Resources
-
-- [Vite Documentation](https://vitejs.dev/)
-- [React Documentation](https://react.dev/)
-- [Tailwind CSS Documentation](https://tailwindcss.com/)
-- [React Router Documentation](https://reactrouter.com/)
+- **State Management**: Built using Angular Signals (`signal()`, `effect()`, `computed()`) for reactive data bindings.
+- **Adaptive Charts**: ApexCharts configurations update dynamically based on the current active theme.
+- **Data Synchronization**: Designed to fetch Premier League statistics from an external API, mapping payloads directly to the PostgreSQL database schema.
